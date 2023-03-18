@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Invoice Manager</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Invoice Manager</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Unpaid Invoices</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Invoice ID</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="unpaid-invoices">
+          <!-- Unpaid invoices will be inserted here dynamically with JavaScript -->
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Paid Invoices</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Invoice ID</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Date Paid</th>
+          </tr>
+        </thead>
+        <tbody id="paid-invoices">
+          <!-- Paid invoices will be inserted here dynamically with JavaScript -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script src="script.js"></script>
+  <button id="pay-now-btn" class="btn" style="display: none;">Pay Now</button>
+</body>
+
+</html>

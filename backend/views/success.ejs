@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Payment Successful</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+        color: #333;
+        text-align: center;
+        padding-top: 40px;
+      }
+      h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      .success-icon {
+        font-size: 72px;
+        color: #4caf50;
+        margin-bottom: 20px;
+      }
+      .invoice-info {
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 40px;
+        text-align: left;
+      }
+      .invoice-info p {
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <i class="success-icon fa fa-check-circle"></i>
+    <h1>Payment Successful</h1>
+    <div class="invoice-info">
+      <p><strong>Invoice:</strong> <%= invoice.description %></p>
+      <p><strong>Amount:</strong> <%= invoice.amount %></p>
+      <p><strong>Payment ID:</strong> <%= payment_id %></p>
+      <p><strong>Payment Status:</strong> <%= payment_status %></p>
+    </div>
+    <p>Thank you for your payment!</p>
+  </body>
+</html>
