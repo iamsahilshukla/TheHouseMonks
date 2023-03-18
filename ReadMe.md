@@ -8,3 +8,8 @@ Before start do this :-
 Run 
     `npm run seed` to insert dummy data in db
     `npm run start` to start server
+
+
+webhook Endpoint:-
+
+URL :- `{BaseUrl}/webhooks/instamojo`
