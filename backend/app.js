@@ -9,7 +9,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
 
 // Connect to MongoDB
-connect('mongodb://localhost/mongodb');
+connect('mongodb+srv://sahilshukla22:sgYG9DAPEBumsUUp@integ.jxluxuz.mongodb.net');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
