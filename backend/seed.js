@@ -3,16 +3,44 @@ import pkg from 'mongoose';
 const { connect, connection } = pkg;
 import { insertMany } from './models/invoice.js';
 
-connect('mongodb+srv://sahilshukla22:sgYG9DAPEBumsUUp@integ.jxluxuz.mongodb.net', {
+connect('mongodb+srv://sahilshukla22:sgYG9DAPEBumsUUp@integ.jxluxuz.mongodb.net', {  //needs to be in config password and username
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
   .then(() => {
     console.log('Connected to MongoDB');
     return insertMany([
-      { name : "Sahil", email : "sahil.shukla@test.in",amount: 100, description: 'Invoice 1' ,purpose : "FIFA"},
-      { name : "Sahil", email : "sahil.shukla@test.in" ,amount: 200, description: 'Invoice 2',purpose : "Cricket" },
-      { name : "Sahil", email : "sahil.shukla@test.in" ,amount: 300, description: 'Invoice 3',purpose : "TableTennis" },
+      { name: 'John Doe', email: 'johndoe@example.com', amount: 50, description: 'Invoice 4', purpose: 'Web Development' },
+      { name: 'Jane Smith', email: 'janesmith@example.com', amount: 100, description: 'Invoice 5', purpose: 'Graphic Design' },
+      { name: 'Bob Johnson', email: 'bobjohnson@example.com', amount: 200, description: 'Invoice 6', purpose: 'Marketing' },
+      {
+        name: "John Doe",
+        email: "john.doe@example.com",
+        amount: 50,
+        description: "Invoice 7",
+        purpose: "Online shopping"
+      },
+      {
+        name: "Jane Smith",
+        email: "jane.smith@example.com",
+        amount: 75,
+        description: "Invoice 8",
+        purpose: "Online shopping"
+      },
+      {
+        name: "Bob Johnson",
+        email: "bob.johnson@example.com",
+        amount: 100,
+        description: "Invoice 9",
+        purpose: "Subscription"
+      },
+      {
+        name: "Alice Lee",
+        email: "alice.lee@example.com",
+        amount: 150,
+        description: "Invoice 10",
+        purpose: "Membership"
+      }
     ]);
   })
   .then(() => {

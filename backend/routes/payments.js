@@ -65,7 +65,7 @@ router.post('/pay', async (req, res) => {
         const email = invoice.email;
         const phone = '9999999999';  //currently not taking data from user once we take data from user we can update in db and fetch it.
         const redirectUrl = `http://localhost:3000/payments/${invoice_id}/success`;
-        const webhook = '';
+        const webhook = 'http://localhost:3000/webhooks/instamojo';
         const allowRepeatedPayments = false;
 
         const paymentRequestData = await createPaymentRequest(authToken, purpose, amount, buyerName, email, phone, redirectUrl, webhook, allowRepeatedPayments);
