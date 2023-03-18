@@ -16,8 +16,8 @@ router.post('/pay', async (req, res) => {
     async function generateAccessToken() {
         const formData = new FormData();
         formData.append('grant_type', 'client_credentials');
-        formData.append('client_id', 'test_y0brvg5o0beAFd5wsREVjGfdnMF2Zkq4hza');
-        formData.append('client_secret', 'test_0p2I3qS574cRFjaJAfc6FSScnHzDQgAjrgBU6zmmMDTpBhL0EfMoNrFBzI1mc6TnsDm2BdcEy7zWNleyx9z8n2UhKOINlGlzbSXp3RQTMbsB4HSHzcrJbRxLHMV');
+        formData.append('client_id', 'test_y0brvg5o0beAFd5wsREVjGfdnMF2Zkq4hza');  //need to put all this in config - confidential data
+        formData.append('client_secret', 'test_0p2I3qS574cRFjaJAfc6FSScnHzDQgAjrgBU6zmmMDTpBhL0EfMoNrFBzI1mc6TnsDm2BdcEy7zWNleyx9z8n2UhKOINlGlzbSXp3RQTMbsB4HSHzcrJbRxLHMV');  //need to put all this in config - confidential data
 
         const tokenResponse = await fetch('https://test.instamojo.com/oauth2/token/', {
             method: 'POST',
@@ -63,7 +63,7 @@ router.post('/pay', async (req, res) => {
         const amount = invoice.amount.toString();
         const buyerName = invoice.name;
         const email = invoice.email;
-        const phone = '9999999999';
+        const phone = '9999999999';  //currently not taking data from user once we take data from user we can update in db and fetch it.
         const redirectUrl = `http://localhost:3000/payments/${invoice_id}/success`;
         const webhook = '';
         const allowRepeatedPayments = false;
@@ -75,20 +75,6 @@ router.post('/pay', async (req, res) => {
             payment_request_id: paymentRequestData.id,
             longurl: paymentRequestData.longurl
         });
-
-
-        // Handle successful/failed payments
-        // This will depend on how you are implementing your payment flow and what methods you are using to update your database or user interface.
-
-        // Webhook
-        // You will need to implement a webhook endpoint to receive and handle notifications from Instamojo. This will likely involve updating your database and/or sending email notifications to users.
-
-        // Redirect
-        // After the user completes the payment on the Instamojo payment page, they will be redirected to the URL specified in the redirect_url parameter of the payment request.
-
-        // Query status of a Payment requests
-        // You can query the status of a payment request by making a GET request to the following endpoint: https://test.instamojo.com/v2/payment_requests/{payment_request_id}/
-        // Replace {payment_request_id} with the ID of the payment request you want to query.
     })();
 
 });
