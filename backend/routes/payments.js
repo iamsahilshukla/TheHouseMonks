@@ -2,7 +2,7 @@
 import { Router } from 'express';
 import { findById } from '../models/invoice.js';
 import fetch from 'node-fetch';
-import query from 'querystring';
+import FormData from 'form-data';
 const router = Router();
 
 router.post('/pay', async (req, res) => {
@@ -15,20 +15,14 @@ router.post('/pay', async (req, res) => {
     }
     // Function to generate access token
     async function generateAccessToken() {
-        // const qs = require('querystring');
-        const data = query.stringify({
-            grant_type: 'client_credentials',
-            client_id: 'test_y0brvg5o0beAFd5wsREVjGfdnMF2Zkq4hza',
-            client_secret: 'test_0p2I3qS574cRFjaJAfc6FSScnHzDQgAjrgBU6zmmMDTpBhL0EfMoNrFBzI1mc6TnsDm2BdcEy7zWNleyx9z8n2UhKOINlGlzbSXp3RQTMbsB4HSHzcrJbRxLHMV'
-        });
+        const formData = new FormData();
+        formData.append('grant_type', 'client_credentials');
+        formData.append('client_id', 'test_y0brvg5o0beAFd5wsREVjGfdnMF2Zkq4hza');  //need to put all this in config - confidential data
+        formData.append('client_secret', 'test_0p2I3qS574cRFjaJAfc6FSScnHzDQgAjrgBU6zmmMDTpBhL0EfMoNrFBzI1mc6TnsDm2BdcEy7zWNleyx9z8n2UhKOINlGlzbSXp3RQTMbsB4HSHzcrJbRxLHMV');  //need to put all this in config - confidential data
 
         const tokenResponse = await fetch('http://test.instamojo.com/oauth2/token/', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Content-Length': data.length
-            },
-            body: data
+            body: formData
         });
         const tokenData = await tokenResponse.json();
         const authToken = tokenData.access_token;
@@ -71,8 +65,8 @@ router.post('/pay', async (req, res) => {
         const buyerName = invoice.name;
         const email = invoice.email;
         const phone = '9999999999';  //currently not taking data from user once we take data from user we can update in db and fetch it.
-        const redirectUrl = `https://thehousemonks.onrender.com/payments/${invoice_id}/success`;
-        const webhook = 'https://thehousemonks.onrender.com/webhooks/instamojo';
+        const redirectUrl = `http://thehousemonks.onrender.com/payments/${invoice_id}/success`;
+        const webhook = 'http://thehousemonks.onrender.com/webhooks/instamojo';
         const allowRepeatedPayments = false;
 
         const paymentRequestData = await createPaymentRequest(authToken, purpose, amount, buyerName, email, phone, redirectUrl, webhook, allowRepeatedPayments);
