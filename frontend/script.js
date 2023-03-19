@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             var InvoiceId = button.dataset.invoiceid;
             console.log ("invoiceId");
             console.log (InvoiceId);
-            const response = await fetch('http://localhost:3000/payments/pay', {
+            const response = await fetch('https://thehousemonks.onrender.com/payments/pay', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
