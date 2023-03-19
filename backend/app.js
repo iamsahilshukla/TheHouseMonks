@@ -1,9 +1,11 @@
 import express from 'express';
 import { connect } from 'mongoose';
+import http from 'http';
 import path from 'path';
 import invoicesRouter from './routes/invoices.js';
 import paymentsRouter from './routes/payments.js';
 import webhooksRouter from './routes/webhooks.js';
+import { hostname } from 'os';
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
@@ -26,7 +28,9 @@ app.use('/invoices', invoicesRouter);
 app.use('/payments', paymentsRouter);
 app.use('/webhooks', webhooksRouter);
 
+const port = process.env.PORT || 3000;
+const server = http.createServer(app);
 // Start the server
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
+server.listen(port, hostname,() => {
+  console.log(`Server listening on port ${port}`);
 });
