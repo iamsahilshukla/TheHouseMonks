@@ -33,7 +33,7 @@ router.post('/instamojo', async (req, res) => {
       res.status(404).send('Invoice not found');
       return;
     }
-    if (invoice.status === 'paid') {
+    if (finalStatus === 'paid') {
       res.status(400).send('Invoice already paid');
       return;
     }
