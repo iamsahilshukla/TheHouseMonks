@@ -14,8 +14,8 @@ router.post('/pay', async (req, res) => {
     }
     // Function to generate access token
     async function generateAccessToken() {
-        const qs = require('querystring');
-        const data = qs.stringify({
+        // const qs = require('querystring');
+        const data = query.stringify({
             grant_type: 'client_credentials',
             client_id: 'test_y0brvg5o0beAFd5wsREVjGfdnMF2Zkq4hza',
             client_secret: 'test_0p2I3qS574cRFjaJAfc6FSScnHzDQgAjrgBU6zmmMDTpBhL0EfMoNrFBzI1mc6TnsDm2BdcEy7zWNleyx9z8n2UhKOINlGlzbSXp3RQTMbsB4HSHzcrJbRxLHMV'
