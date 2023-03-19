@@ -1,8 +1,7 @@
 // routes/payments.js
 import { Router } from 'express';
 import { findById } from '../models/invoice.js';
-import fetch from 'node-fetch';
-import FormData from 'form-data';
+import axios from 'axios';
 const router = Router();
 
 router.post('/pay', async (req, res) => {
@@ -20,36 +19,35 @@ router.post('/pay', async (req, res) => {
         formData.append('client_id', 'test_y0brvg5o0beAFd5wsREVjGfdnMF2Zkq4hza');  //need to put all this in config - confidential data
         formData.append('client_secret', 'test_0p2I3qS574cRFjaJAfc6FSScnHzDQgAjrgBU6zmmMDTpBhL0EfMoNrFBzI1mc6TnsDm2BdcEy7zWNleyx9z8n2UhKOINlGlzbSXp3RQTMbsB4HSHzcrJbRxLHMV');  //need to put all this in config - confidential data
 
-        const tokenResponse = await fetch('http://test.instamojo.com/oauth2/token/', {
-            method: 'POST',
-            body: formData
+        const tokenResponse = await axios.post('http://test.instamojo.com/oauth2/token/', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         });
-        const tokenData = await tokenResponse.json();
+        const tokenData = tokenResponse.data;
         const authToken = tokenData.access_token;
 
         return authToken;
     }
     // Function to create a payment request
     async function createPaymentRequest(authToken, purpose, amount, buyerName, email, phone, redirectUrl, webhook, allowRepeatedPayments) {
-        const paymentRequestResponse = await fetch('http://test.instamojo.com/v2/payment_requests/', {
-            method: 'POST',
+        const paymentRequestResponse = await axios.post('http://test.instamojo.com/v2/payment_requests/', {
+            purpose: purpose,
+            amount: amount,
+            buyer_name: buyerName,
+            email: email,
+            phone: phone,
+            redirect_url: redirectUrl,
+            webhook: webhook,
+            allow_repeated_payments: allowRepeatedPayments
+        }, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authToken}`
-            },
-            body: JSON.stringify({
-                purpose: purpose,
-                amount: amount,
-                buyer_name: buyerName,
-                email: email,
-                phone: phone,
-                redirect_url: redirectUrl,
-                webhook: webhook,
-                allow_repeated_payments: allowRepeatedPayments
-            })
+            }
         });
 
-        const paymentRequestData = await paymentRequestResponse.json();
+        const paymentRequestData = paymentRequestResponse.data;
         return paymentRequestData;
     }
 
