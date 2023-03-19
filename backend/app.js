@@ -5,10 +5,15 @@ import path from 'path';
 import invoicesRouter from './routes/invoices.js';
 import paymentsRouter from './routes/payments.js';
 import webhooksRouter from './routes/webhooks.js';
+import cors from 'cors';
 import { hostname } from 'os';
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
+
+app.use(cors({
+  origin : '*',
+}))
 
 // Connect to MongoDB
 connect('mongodb+srv://sahilshukla22:sgYG9DAPEBumsUUp@integ.jxluxuz.mongodb.net'); //needs to be in config password and username
