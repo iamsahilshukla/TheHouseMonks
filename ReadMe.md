@@ -16,8 +16,6 @@ URL :- `{BaseUrl}/webhooks/instamojo`
 
 https://testthehousemonks.onrender.com/     `this is the link for website, wait for atlease 30 sec as it connect db which takes some time`.
 
-after redirecting from instaMojo please open the site again manually sorry for incovinience
-
 frontEnd and bakend both are hosted in render.com
 
 Invoice Schema:- (not final, as there can be lot of changes which i can make).
