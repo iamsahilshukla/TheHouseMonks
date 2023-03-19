@@ -19,13 +19,13 @@ router.post('/pay', async (req, res) => {
         formData.append('client_id', 'test_y0brvg5o0beAFd5wsREVjGfdnMF2Zkq4hza');  //need to put all this in config - confidential data
         formData.append('client_secret', 'test_0p2I3qS574cRFjaJAfc6FSScnHzDQgAjrgBU6zmmMDTpBhL0EfMoNrFBzI1mc6TnsDm2BdcEy7zWNleyx9z8n2UhKOINlGlzbSXp3RQTMbsB4HSHzcrJbRxLHMV');  //need to put all this in config - confidential data
 
-        const tokenResponse = await axios.post('http://test.instamojo.com/oauth2/token/', formData, {
+        const tokenResponse = await axios.post('https://test.instamojo.com/oauth2/token/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         }).catch((error) => {
             console.log(error.message);
-            res.status(500).send('Error generating access token');
+            return Promise.reject(new Error('Error generating access token'));
         });
         const tokenData = tokenResponse.data;
         const authToken = tokenData.access_token;
@@ -34,7 +34,7 @@ router.post('/pay', async (req, res) => {
     }
     // Function to create a payment request
     async function createPaymentRequest(authToken, purpose, amount, buyerName, email, phone, redirectUrl, webhook, allowRepeatedPayments) {
-        const paymentRequestResponse = await axios.post('http://test.instamojo.com/v2/payment_requests/', {
+        const paymentRequestResponse = await axios.post('https://test.instamojo.com/v2/payment_requests/', {
             purpose: purpose,
             amount: amount,
             buyer_name: buyerName,
@@ -50,7 +50,7 @@ router.post('/pay', async (req, res) => {
             }
         }).catch((error) => {
             console.log(error.message);
-            res.status(500).send('Error creating payment request');
+            return Promise.reject(new Error('Error creating payment request'));
         });
 
         const paymentRequestData = paymentRequestResponse.data;
@@ -70,8 +70,8 @@ router.post('/pay', async (req, res) => {
         const buyerName = invoice.name;
         const email = invoice.email;
         const phone = '9999999999';  //currently not taking data from user once we take data from user we can update in db and fetch it.
-        const redirectUrl = `http://thehousemonks.onrender.com/payments/${invoice_id}/success`;
-        const webhook = 'http://thehousemonks.onrender.com/webhooks/instamojo';
+        const redirectUrl = `https://thehousemonks.onrender.com/payments/${invoice_id}/success`;
+        const webhook = 'https://thehousemonks.onrender.com/webhooks/instamojo';
         const allowRepeatedPayments = false;
 
         const paymentRequestData = await createPaymentRequest(authToken, purpose, amount, buyerName, email, phone, redirectUrl, webhook, allowRepeatedPayments);
