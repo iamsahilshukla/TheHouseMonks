@@ -15,9 +15,9 @@ router.post('/pay', async (req, res) => {
     // Function to generate access token
     async function generateAccessToken() {
         const formData = new FormData();
-        formData.append('grant_type', 'client_credentials');
-        formData.append('client_id', 'test_y0brvg5o0beAFd5wsREVjGfdnMF2Zkq4hza');  //need to put all this in config - confidential data
-        formData.append('client_secret', 'test_0p2I3qS574cRFjaJAfc6FSScnHzDQgAjrgBU6zmmMDTpBhL0EfMoNrFBzI1mc6TnsDm2BdcEy7zWNleyx9z8n2UhKOINlGlzbSXp3RQTMbsB4HSHzcrJbRxLHMV');  //need to put all this in config - confidential data
+        formData.append('grant_type', process.env.grant_type);
+        formData.append('client_id', process.env.client_id);
+        formData.append('client_secret', process.env.client_secret);
 
         const tokenResponse = await axios.post('https://test.instamojo.com/oauth2/token/', formData, {
             headers: {
