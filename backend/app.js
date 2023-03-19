@@ -16,7 +16,7 @@ app.use(cors({
 }))
 
 // Connect to MongoDB
-connect('mongodb+srv://sahilshukla22:sgYG9DAPEBumsUUp@integ.jxluxuz.mongodb.net'); //needs to be in config password and username
+connect(`mongodb+srv://sahilshukla22:${process.env.mongoDbPass}@integ.jxluxuz.mongodb.net/test`);
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

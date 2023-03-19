@@ -3,7 +3,7 @@ import pkg from 'mongoose';
 const { connect, connection } = pkg;
 import { insertMany } from './models/invoice.js';
 
-connect('mongodb+srv://sahilshukla22:sgYG9DAPEBumsUUp@integ.jxluxuz.mongodb.net', {  //needs to be in config password and username
+connect(`mongodb+srv://sahilshukla22:${process.env.mongoDbPass}@integ.jxluxuz.mongodb.net`, {  //needs to be in config password and username
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
