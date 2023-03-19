@@ -65,6 +65,9 @@ cURL for webhook:-
 
 just update paymentId and status.
 
+<img width="1728" alt="Screenshot 2023-03-20 at 3 26 13 AM" src="https://user-images.githubusercontent.com/55778358/226212057-d87004e5-0c8b-43ad-9058-2780330b2162.png">
+
+
 Thanks,
 Sahil shukla
 
