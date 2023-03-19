@@ -14,7 +14,7 @@ webhook Endpoint:-
 
 URL :- `{BaseUrl}/webhooks/instamojo`
 
-https://testthehousemonks.onrender.com/ this is the link for website.
+https://testthehousemonks.onrender.com/     `this is the link for website, wait for atlease 30 sec as it connect db which takes some time`.
 
 after redirecting from instaMojo please open the site again manually sorry for incovinience
 
