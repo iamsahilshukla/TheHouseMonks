@@ -62,4 +62,4 @@ const updateInvoice = async (id, update) => {
     }
 };
 
-export { Invoice, insertMany, find, findById, findOne, updateInvoice};
+export { Invoice, insertMany, find, findById, findOne, updateInvoice };

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const paidTableBody = document.querySelector('#paid-invoices');
   const payment_link = 'https://www.google.com'; // mock
   // Fetch the invoice data from the server
-  fetch('https://thehousemonks.onrender.com/invoices/')
+  fetch('http://localhost:3000/invoices/')
     .then(response => response.json())
     .then(invoices => {
       // Loop through the invoices and add rows to the table
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             var InvoiceId = button.dataset.invoiceid;
             console.log ("invoiceId");
             console.log (InvoiceId);
-            const response = await fetch('https://thehousemonks.onrender.com/payments/pay', {
+            const response = await fetch('http://localhost:3000/payments/pay', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
