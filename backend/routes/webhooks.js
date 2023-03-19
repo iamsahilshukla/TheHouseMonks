@@ -33,10 +33,6 @@ router.post('/instamojo', async (req, res) => {
       res.status(404).send('Invoice not found');
       return;
     }
-    if (finalStatus === 'paid') {
-      res.status(400).send('Invoice already paid');
-      return;
-    }
     res.send('Webhook processed successfully');
   // } else {
   //   res.status(400).send('Webhook signature verification failed');
