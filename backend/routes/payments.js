@@ -2,6 +2,7 @@
 import { Router } from 'express';
 import { findById } from '../models/invoice.js';
 import axios from 'axios';
+import FormData from 'form-data';
 const router = Router();
 
 router.post('/pay', async (req, res) => {
@@ -9,8 +10,7 @@ router.post('/pay', async (req, res) => {
     const invoice = await findById(invoice_id);
     console.log(req.body);
     if (!invoice) {
-        console.log('Invoice not found');
-        return;
+        return res.status(404).send('Invoice not found');
     }
     // Function to generate access token
     async function generateAccessToken() {
@@ -23,6 +23,9 @@ router.post('/pay', async (req, res) => {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
+        }).catch((error) => {
+            console.log(error.message);
+            res.status(500).send('Error generating access token');
         });
         const tokenData = tokenResponse.data;
         const authToken = tokenData.access_token;
@@ -45,6 +48,9 @@ router.post('/pay', async (req, res) => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authToken}`
             }
+        }).catch((error) => {
+            console.log(error.message);
+            res.status(500).send('Error creating payment request');
         });
 
         const paymentRequestData = paymentRequestResponse.data;
@@ -53,6 +59,7 @@ router.post('/pay', async (req, res) => {
 
     // Integration steps
     (async function () {
+        try {
         // Generate access token
         const authToken = await generateAccessToken();
         console.log(`Access token: ${authToken}`);
@@ -73,7 +80,11 @@ router.post('/pay', async (req, res) => {
         res.json({
             payment_request_id: paymentRequestData.id,
             longurl: paymentRequestData.longurl
-        });
+        })}
+        catch(error) {
+            console.log(error.message);
+            res.status(500).send('Error sending payment request');
+    };
     })();
 
 });
