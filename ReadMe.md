@@ -1,3 +1,14 @@
+## Payment Gateway Integration
+
+This is a Node.js application that integrates with Instamojo payment gateway.
+
+To run the application, clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/iamsahilshukla/TheHouseMonks.git
+cd TheHouseMonks
+npm install```
+
 "scripts": {
     "start": "node app.js",
     "seed" : "node seed.js"
@@ -14,9 +25,8 @@ webhook Endpoint:-
 
 URL :- `{BaseUrl}/webhooks/instamojo`
 
-https://testthehousemonks.onrender.com/ this is the link for website.
-
-after redirecting from instaMojo please open the site again manually sorry for incovinience
+https://testthehousemonks.onrender.com/     
+`this is the link for website, wait for atlease 30 sec as it connect db which takes some time`.
 
 frontEnd and bakend both are hosted in render.com
 
