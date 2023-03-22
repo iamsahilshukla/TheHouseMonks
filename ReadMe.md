@@ -28,7 +28,7 @@ webhook Endpoint:-
 
 URL :- `{BaseUrl}/webhooks/instamojo`
 
-https://testthehousemonks.onrender.com/     
+https://testthehousemonks.onrender.com/     // It will load so wait for 30 second please.
 `this is the link for website, wait for atlease 30 sec as it connect db which takes some time`.
 
 frontEnd and bakend both are hosted in render.com
