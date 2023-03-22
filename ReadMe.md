@@ -4,6 +4,9 @@ This is a Node.js application that integrates with Instamojo payment gateway.
 
 To run the application, clone the repository and install the dependencies:
 
+![INVOICE_MANAGER](/homePage.png)
+
+
 ```bash
 git clone https://github.com/iamsahilshukla/TheHouseMonks.git
 cd TheHouseMonks
@@ -77,7 +80,6 @@ just update paymentId and status.
 
 
 
-![INVOICE_MANAGER](/homePage.png)
 
 
 Thanks,
