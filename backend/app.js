@@ -1,5 +1,5 @@
 import express from 'express';
-import { connect } from 'mongoose';
+import mongoose from 'mongoose';
 import http from 'http';
 import path from 'path';
 import invoicesRouter from './routes/invoices.js';
@@ -11,16 +11,29 @@ import { hostname } from 'os';
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
 
-app.use(cors({
-  origin : '*',
-}))
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 
 // Connect to MongoDB
-connect(
+mongoose.connect(
   `mongodb+srv://iamsahilshukla:6zeFu3ACTJLuAUb2@cluster0.mr9ar.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
-)
-  .then((data) => console.log('Database connected successfully'))
-  .catch((e) => console.error(e)); //needs to be in config password and username
+);
+
+// Connection events
+mongoose.connection.on('connected', () => {
+  console.log('Mongoose connected to the database');
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error('Mongoose connection error:', err);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('Mongoose disconnected from the database');
+});
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -40,6 +53,6 @@ app.use('/webhooks', webhooksRouter);
 const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 // Start the server
-server.listen(port, hostname,() => {
+server.listen(port, hostname, () => {
   console.log(`Server listening on port ${port}`);
 });
