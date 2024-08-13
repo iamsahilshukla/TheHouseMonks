@@ -16,7 +16,11 @@ app.use(cors({
 }))
 
 // Connect to MongoDB
-connect(`mongodb+srv://iamsahilshukla:6zeFu3ACTJLuAUb2@cluster0.mr9ar.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`); //needs to be in config password and username
+connect(
+  `mongodb+srv://iamsahilshukla:6zeFu3ACTJLuAUb2@cluster0.mr9ar.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+)
+  .then((data) => console.log('Database connected successfully'))
+  .catch((e) => console.error(e)); //needs to be in config password and username
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
