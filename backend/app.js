@@ -16,7 +16,7 @@ app.use(cors({
 }))
 
 // Connect to MongoDB
-connect(`mongodb+srv://sahilshukla22:${process.env.mongoDbPass}@integ.jxluxuz.mongodb.net`); //needs to be in config password and username
+connect(`mongodb+srv://iamsahilshukla:6zeFu3ACTJLuAUb2@cluster0.mr9ar.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`); //needs to be in config password and username
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
