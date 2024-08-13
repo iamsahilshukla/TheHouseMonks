@@ -5,7 +5,7 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "form-data": "^4.0.0",
-    "mongoose": "^5.10.0",
+    "mongoose": "^7.8.0",
     "node-fetch": "^3.3.1",
     "querystring": "^0.2.1"
   },
